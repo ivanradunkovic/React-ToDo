@@ -18,13 +18,13 @@ function App() {
     }
   ]);
   
-  function handleKeyDown(e, i) {
+  function handleKeyDown(e, i) { // enter key for new todo
     if (e.key === 'Enter') {
       createTodoAtIndex(e, i);
     }
   }
 
-  function createTodoAtIndex(e, i) {
+  function createTodoAtIndex(e, i) { // new todo can be created
     const newTodos = [...todos];
     newTodos.splice(i + 1, 0, {
       content: '',
@@ -36,6 +36,11 @@ function App() {
     }, 0);
   }
   
+  function updateTodoAtIndex(e, i) { //update todo
+    const newTodos = [...todos];
+    newTodos[i].content = e.target.value;
+    setTodos(newTodos);
+  }
 
   return (
     <div className="app">
@@ -49,7 +54,8 @@ function App() {
             <div className="checkbox" />
             <input type="text"
             value={todo.content}
-            onKeyDown={e => handleKeyDown(e, i)}
+            onKeyDown={e => handleKeyDown(e, i)} //i need this for enter new todo
+            onChange={e => updateTodoAtIndex(e, i)} //edit todo
             />
           </div>
            ))}
