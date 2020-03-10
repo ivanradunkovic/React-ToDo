@@ -18,9 +18,13 @@ function App() {
     }
   ]);
   
-  function handleKeyDown(e, i) { // enter key for new todo
+  function handleKeyDown(e, i) {
     if (e.key === 'Enter') {
       createTodoAtIndex(e, i);
+    }
+    if (e.key === 'Backspace' && todos[i].content === '') {
+      e.preventDefault();
+      return removeTodoAtIndex(i);
     }
   }
 
@@ -40,6 +44,14 @@ function App() {
     const newTodos = [...todos];
     newTodos[i].content = e.target.value;
     setTodos(newTodos);
+  }
+
+  function removeTodoAtIndex(i) { // remove todo
+    if (i === 0 && todos.length === 1) return;
+    setTodos(todos => todos.slice(0, i).concat(todos.slice(i + 1, todos.length)));
+    setTimeout(() => {
+      document.forms[0].elements[i - 1].focus();
+    }, 0);
   }
 
   return (
