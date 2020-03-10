@@ -65,25 +65,25 @@ function App() {
       <div className="header">
         <img src={logo} className="logo" alt="logo" />
       </div>
-      <form className="todo-list">
-        <ul>
-          {todos.map((todo, i) => ( // it will show todos from function
-            <div className={`todo ${todo.isCompleted && 'todo-is-completed'}`}>
-              <div className={'checkbox'} onClick={() => toggleTodoCompleteAtIndex(i)}>
-                {todo.isCompleted && (
-                  <span>&#x2714;</span>
-                )}
-              </div>
-              <input
+          <form className="todo-list">
+            <ul>
+              {todos.map((todo, i) => ( // it will show todos from function
+      <div className={`todo ${todo.isCompleted && 'todo-is-completed'}`}>
+      <div className={'checkbox'} onClick={() => toggleTodoCompleteAtIndex(i)}>
+              {todo.isCompleted && (
+            <span>&#x2714;</span>
+            )}
+      </div>
+          <input
                 type="text"
                 value={todo.content}
                 onKeyDown={e => handleKeyDown(e, i)} //i need this for enter new todo
                 onChange={e => updateTodoAtIndex(e, i)} //edit todo
-              />
-            </div>
+          />
+      </div>
           ))}
-        </ul>
-      </form>
+          </ul>
+          </form>
     </div>
   );
 }
